@@ -1,7 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, Image} from 'react-native'
-
-import 
+import {View, StyleSheet, Image,TouchableOpacity} from 'react-native'
 
 const App = () =>{
   
@@ -9,15 +7,24 @@ const App = () =>{
 
   return (
     <View style={toggle ? style.containerLight : style.containerDark}>
-
-      <Image 
-        style={ toggle ? style.lightingOn : style.lightingOff}  
-        source={
-          toggle
-          ? require('./assets/icons/eco-light.png')
-          : require('./assets/icons/eco-light-off.png')
-        }
-      />
+      <TouchableOpacity onPress={()=>{}}>
+        <Image 
+          style={ toggle ? style.lightingOn : style.lightingOff}  
+          source={
+            toggle
+            ? require('./assets/icons/eco-light.png')
+            : require('./assets/icons/eco-light-off.png')
+          }
+        />
+        <Image 
+          style={style.dioLogo}  
+          source={
+            toggle
+            ? require('./assets/icons/logo-dio.png')
+            : require('./assets/icons/logo-dio-white.png')
+          }
+        />
+      </TouchableOpacity>
     </View>
   )
 }
@@ -50,5 +57,11 @@ const style = StyleSheet.create({
     alignSelf:'center',
     width:150,
     height:150
+  },
+  dioLogo:{
+    resizeMode:'contain',
+    alignSelf:'center',
+    width:250,
+    height:250
   }
 })
