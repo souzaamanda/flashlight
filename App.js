@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import {View, StyleSheet, Image,TouchableOpacity, Alert} from 'react-native'
 import Torch from 'react-native-torch'
+import RNShake from 'react-native-shake'
 
 const App = () =>{
   
@@ -21,6 +22,23 @@ const App = () =>{
     console.log('Trocou estado do flash')
 
     },[toggle])
+
+
+    useEffect(() =>{
+      // Quando o celular for chacoalhado mudaremos o toggle
+
+      const subscription = RNShake.addListener(() =>{
+        //Diz o que fazer com esse evento
+        setToggle((oldToggle)=>{
+          return !oldToggle
+        })
+      })
+
+      //Essa função vai ser chamada quando o componente for desmontado
+      //Removendo o ouvinte do evento
+      return () => subscription.remove()
+    },[])
+
 
   return (
     <View style={toggle ? style.containerLight : style.containerDark}>
