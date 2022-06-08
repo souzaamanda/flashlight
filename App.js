@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
-import {View, StyleSheet, Image,TouchableOpacity} from 'react-native'
+import React, {useState,useEffect} from 'react'
+import {View, StyleSheet, Image,TouchableOpacity, Alert} from 'react-native'
+import Torch from 'react-native-torch'
 
 const App = () =>{
   
@@ -10,6 +11,16 @@ const App = () =>{
   const handleChangeToggle = () => setToggle((oldToggle)=>{
     return !oldToggle
   })
+
+  useEffect(() =>{
+    //Liga flash do celular
+
+    //Alert.alert('Atualizou o componente ' + toggle)
+
+    Torch.switchState(toggle)
+    console.log('Trocou estado do flash')
+
+    },[toggle])
 
   return (
     <View style={toggle ? style.containerLight : style.containerDark}>
